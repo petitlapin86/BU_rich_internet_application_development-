@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>STOPSIGN</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="html5.css">
+    </head>
+    <body>
+
+        <svg width="500" height="300">
+          <defs> <!--embed definition that can be reused inside svg-->
+              <g id="stopSign">
+                <!--the polygon provided in the sample was causing problems for me because it started with such a high number
+                when I rotated the stopsigns they were rotating out of the viewing area-->
+                <polygon points="34.2,87.4 12.3,65.5 12.3,34.5 34.2,12.6 65.2,12.6 87.1,34.5 87.1,65.5 65.2,87.4"
+                    fill="red" stroke="gray" stroke-width="2">
+                </polygon>
+                <text x="50.5" y="50" font-size="18pt" text-anchor="middle" fill="white" stroke="none" stroke-width="1px" dy=".3em">STOP</text>
+            </g>
+          </defs> <!--close def-->
+
+        <!--when using defs you have to call the id-->
+        <use xlink:href="#stopSign"
+        transform="scale(1.1)"></use>
+
+        <!--reusing same id and polygon code but changing location and rotation-->
+        <use xlink:href="#stopSign"
+        transform="translate(200,0) rotate(90) scale(1.1)" ></use>
+
+        <use xlink:href="#stopSign"
+        transform="translate(290,110) rotate(180) scale(1.1)"></use>
+
+        <use xlink:href="#stopSign"
+        transform="translate(90,90) scale(1.1)">
+
+        <!--took me a long time to figure out how to keep the rotation from bopping all over the screen
+         I finally discovered the "sum" attribute Specifies that the animation will add to the underlying
+         value of the attribute and other lower priority animations. -->
+        <animateTransform
+        additive="sum"
+        attributeName="transform"
+                attributeType="XML"
+                begin="0s" dur="1s"
+                type="rotate"
+                from="0 50 50"
+                to="360 50 50"
+                repeatCount="indefinite">
+     </animateTransform>
+     ></use>
+
+
+
+   </svg> <!--close svg-->

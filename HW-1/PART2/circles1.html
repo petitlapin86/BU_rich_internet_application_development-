@@ -1,22 +1,3 @@
-<!--
-When the user clicks with the mouse on the canvas, a filled circle of size of 30 is
-drawn at the clicked point. A random color is used for each mouse click. (See the
-randomColor.html in Module1 Canvas samples for generating random color).
-Write the code in the files circles1.html and circles1.js. Use a canvas of size 400
-x 400.
-Modify the application so that any overlapping circles are hidden when a new
-circle is being drawn at the clicked point as shown in the following link. Write the
-code in the files circles2.html and circles2.js.
-
-
-https://mymedia.bu.edu/media/CS701_HW1_Clip12/1_se8jltx4
-
-check out examples:
-randomColor.html
-and
-ex12 canvassample.html
--->
-
 <!DOCTYPE html>
 <!--
 When the user clicks with the mouse on the canvas, a filled circle of size of 30 is
@@ -52,24 +33,50 @@ ex12 canvassample.html
     <!--below came from a suggested example - i need to figure out how to make a circle appear in a random color on click - not the entire canvas-->
     <!--second task is to track the circles created so that they dissapear when a new circle is clicked on top of an existing clicked spot-->
     <script>
-        (function(doc) {
+        (function (doc) {
 
             var canvas = doc.getElementById("testCanvas");
             var context = canvas.getContext("2d");
 
             // click event handler
-            canvas.onclick = function(e) {
+            let circles = [];
+            let remove = false;
+            canvas.onclick = function (e) {
                 let mousePosition = getMousePos(canvas, e);
                 let posX = mousePosition.x;
                 let posY = mousePosition.y;
+
+                circles.forEach((circle, index, circles) => {
+                    if (isIntersect(mousePosition, circle)) {
+                        circles.splice(index, 1);
+                        remove = true;
+                    }
+                });
+                if (remove) {
+                    remove = false;
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    genrateCircles(circles);
+                    return false;
+                }
                 var nextColor = randomColor();
                 context.fillStyle = nextColor;
                 context.beginPath();
-                context.arc(posX, posY, 30, 0, 2*Math.PI);
+                context.arc(posX, posY, 30, 0, 2 * Math.PI);
                 context.fill();
-
+                let circle = {
+                    x: posX,
+                    y: posY,
+                    radius: 30,
+                    color: nextColor
+                }
+                circles.push(circle);
             }
 
+            function isIntersect(point, circle) {
+                return Math.sqrt((point.x - circle.x) ** 2 + (point.y - circle.y) ** 2) < circle.radius;
+            }
+
+            // Get Mouse Position where we just tapped.
             function getMousePos(canvas, evt) {
                 // console.log(evt);
                 let rect = canvas.getBoundingClientRect();
@@ -79,8 +86,14 @@ ex12 canvassample.html
                 }
             }
 
-            // Get Mouse Position where we just tapped.
-
+            function genrateCircles(circles) {
+                circles.forEach(circle => {
+                    context.beginPath();
+                    context.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI, false);
+                    context.fillStyle = circle.color;
+                    context.fill();
+                });
+            }
 
         })(document);
     </script>

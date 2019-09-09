@@ -1,5 +1,6 @@
-
 <!--
+PAIGE MADELINE JONES MET CS 701 FALL 1 2019
+paigemj@bu.edu
 Using the HTML5 SVG API, draw the following in the file stopSign.html.
 Define a svg area of size 500 x 300. In the defs section, group a red polygon and
 the text for the STOP sign shape and assign an id for this group. The coordinates
@@ -12,7 +13,6 @@ The third shape is the one where a kid decided to rotate the shape 180 degrees
 clockwise from the normal.
 The fourth one is an animation where the kid decided to give the shape a spin.
 A demo of the application is shown in the following link:
-
 https://mymedia.bu.edu/media/CS701_HW1_Clip3/1_yn6tafr8
 -->
 <!DOCTYPE html>
@@ -34,9 +34,9 @@ https://mymedia.bu.edu/media/CS701_HW1_Clip3/1_yn6tafr8
 
             <svg width="500" height="300">
               <defs> <!--embed definition that can be reused inside svg-->
-                  <g id="stopSign">
+                  <g id="stopSign"> <!--create an id called stopSign-->
                     <!--the polygon provided in the sample ex04 was causing problems for me because it started with such a high number
-                    when I rotated the stopsigns they were rotating out of the viewing area-->
+                    when I rotated the stopsigns I think they were rotating out of the viewing area-->
                     <polygon points="34.2,87.4 12.3,65.5 12.3,34.5 34.2,12.6 65.2,12.6 87.1,34.5 87.1,65.5 65.2,87.4"
                         fill="red" stroke="gray" stroke-width="2"> <!--styling like the example-->
                     </polygon>
@@ -59,7 +59,7 @@ https://mymedia.bu.edu/media/CS701_HW1_Clip3/1_yn6tafr8
             transform="translate(90,90) scale(1.1)">
 
             <!--took me a long time to figure out how to keep the rotation from bopping all over the screen
-             I finally discovered the "sum" attribute Specifies that the animation will add to the underlying
+             I finally discovered the "sum" attribute: Specifies that the animation will add to the underlying
              value of the attribute and other lower priority animations. -->
             <animateTransform
             additive="sum"
@@ -71,6 +71,5 @@ https://mymedia.bu.edu/media/CS701_HW1_Clip3/1_yn6tafr8
                     to="360 50 50"
                     repeatCount="indefinite">
          </animateTransform>
-         ></use>
-
-       </svg> <!--close svg-->
+         </use>
+         </svg> <!--close svg-->

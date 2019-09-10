@@ -1,50 +1,49 @@
+//define the main variables
 var canvas;
-var ctx;
-var centerX;
-var centerY;
+var ring;
 
 window.onload = init;
 
-function init(){
-  canvas = document.getElementById("c");
-  ctx = c.getContext("2d");
+function init(){ //initialize canvas
+  canvas = document.getElementById("theCanvas");
+  ring = theCanvas.getContext("2d");
 
-  centerX = canvas.width / 2;
-  centerY = canvas.height / 2;
+  var centerX = canvas.width / 2; //define variables for center points of canvas
+  var centerY = canvas.height / 2;
 
-  drawPattern();
+  makeRings(); //call function
 }
 
-function drawPattern(){
-  ctx.clearRect(0,0,canvas.width, canvas.height);
+function makeRings(){
+  ring.clearRect(0,0,canvas.width, canvas.height);
   var radius = document.getElementById("radius").value;
-  var currentRadius = 200;
-  var colorCheck = 0;
+  var remainingRadius = 200; //baseline 200
+  var colorCheck = 0; //baseline 0
 
-  document.getElementById("bandnumber").innerHTML = radius;
+  document.getElementById("bandwNumber").innerHTML = radius; //read html label to define the radius
 
-  while(currentRadius > 0)
+  while(remainingRadius > 0) //as long as remaining radius is highter than 0
     {
-      if(colorCheck == 0)
+      if(colorCheck == 0) //use if else logic to decide which color to fill
         {
-          ctx.fillStyle = "#F75D59";
+          ring.fillStyle = "#F75D59";
         }
       else{
-        ctx.fillStyle = "#82CAFF";
+        ring.fillStyle = "#82CAFF";
       }
 
-      ctx.beginPath();
-      ctx.arc(200, 200, currentRadius, 0, 2*Math.PI,true);
-      ctx.fill();
-      ctx.closePath();
-      currentRadius -= radius;
+      ring.beginPath(); //stylize rings
+      ring.arc(200, 200, remainingRadius, 0, 2*Math.PI,true); //create ring size
+      ring.fill(); //fill with appropriate color
+      ring.closePath(); //finish
+      remainingRadius -= radius; //decrement radius
 
-      if(colorCheck == 0)
+      if(colorCheck == 0) //this essentially swaps colors red to blue each time through
         {
-          colorCheck += 1;
+          colorCheck += 1; //increment
         }
       else{
-        colorCheck -= 1;
+        colorCheck -= 1; //otherwise decrement
       }
     }
 }

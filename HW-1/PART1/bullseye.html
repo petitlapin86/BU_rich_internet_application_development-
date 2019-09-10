@@ -18,20 +18,12 @@ sliderExample.html in Module1 Canvas samples)
 <title>BULLSEYE></title>
 
 <!--internal CSS begin-->
+<!--styling the background and slider-->
 <style>
+
 body{
   max-width: 760px;
-  background-color: #CCC;
-}
-
-#c{
-  display: block;
-  margin: 20px auto;
-}
-
-input{
-  display: block;
-  margin: 0 auto;
+  background-color: #FFFFCC;
 }
 
 label{
@@ -39,23 +31,34 @@ label{
   margin-left: 200px;
 }
 
-#bandnumber{
+input{
+  display: block;
+  margin: 0 auto;
+}
+
+#theCanvas{
+  display: block;
+  margin: 20px auto;
+}
+
+#bandwNumber{
   padding-left: 5px;
 }
 </style>
 <!--internal CSS end-->
 </head>
 
+<!--begin main body-->
 <body> <!---opening tag-->
-
 <!--define the canvas size and color-->
-<canvas id="c" width=400 height=400 style = "border: 2px solid black;"></canvas>
+<canvas id="theCanvas" width=400 height=400 style = "border: 2px solid #82CAFF;"></canvas>
 <!--create a label element-->
-<label for="radius">Band Width:<span id="bandnumber">--</span></label>
+<h1 align="center">Prepare to be hypnotized!</h1>
+<label for="radius">Band Width:<span id="bandwNumber">--</span></label>
 <!--set the bandwidth slider range--->
-<input type="range" id="radius" min="5" max="50" step="5" value="25" onchange="drawPattern()"></input>
+<input type="range" id="radius" min="5" max="50" step="5" value="25" onchange="makeRings()"></input>
 
-
+<!--link to js bullseye code-->
 <script src="bullseye.js"></script>
 
 </body> <!--closing tags-->

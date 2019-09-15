@@ -1,0 +1,40 @@
+<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+<head>
+  <title>Geolocation Sample</title>
+  <meta charset="utf-8">
+  <script src="LocationTracker.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoD73NPhHT98QjQ4VpKH6wtTktwnbeiys" async defer></script>
+  <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+  <div id="wrapper">
+    <h1 id="title">Location Tracker</h1>
+    <p id="title">If you want to fly give up everything that weighs you down</p>
+    <p id="title">Set your bird free:</p>
+    <div class="counter">
+      <h2 class="updater">Update #:</h2><span id="counter">0</span><br/>
+    </div>
+
+    <button id="startButton" onclick="disable()">START</button><br/>
+
+    <div id="map">
+    </div>
+
+    <div id="status">
+      <div class="starts">
+        <h2>Start Latitude:</h2><span id="startLat">--</span>
+
+        <h2>Start Longitude:</h2><span id="startLon">--</span><br/>
+      </div>
+      <div class="current">
+        <h2>Current Latitude:</h2><span id="currentLat">--</span>
+
+        <h2>Current Longitude:</h2><span id="currentLon">--</span><br/>
+      </div>
+
+      <h2 class="hide">Timestamp:</h2><span class="hide" id="timestamp">--</span><br/>
+    </div>
+
+  </div>

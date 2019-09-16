@@ -71,25 +71,45 @@
       </article>
     </section>
 
-  </body>
+
+<!--from here down is example drag and drop file-->
+<style>
+#target, #src > img {
+	border: thin solid black;
+	padding: 2px;
+	margin: 4px;
+}
+
+#target {
+	height: 75px;
+	width: 75px;
+	text-align: center;
+	display: table;
+}
+
+.dragged {opacity: 0.5;}
+
+</style>
+
+
+        <script src="dragAndDropSample.js"></script>
+
+         <div id="src">
+            <img draggable="true" id="ltc" src="f1.png"
+                alt="Prof. Chitkushev"/>
+            <img draggable="true" id="temkin" src="f2.png"
+                alt="Prof. Temkin"/>
+            <img draggable="true" id="kanabar" src="f3.png"
+                alt="Prof. Kanabar"/>
+            <img draggable="true" id="kalathur" src="f4.png"
+                alt="Prof. Kalathur"/>
+        </div>
+        <p></p>
+        <div id="target">
+
+        </div>
+
+         <p id="msg">Drop over the target</p>
+
+    </body>
 </html>
-
-
-  <!--
-  DRAG AND DROP EXAMPLE
-      <div id="src">
-           <img draggable="true" id="ltc" src="f1.png"
-               alt="Prof. Chitkushev"/>
-           <img draggable="true" id="temkin" src="f2.png"
-               alt="Prof. Temkin"/>
-           <img draggable="true" id="kanabar" src="f3.png"
-               alt="Prof. Kanabar"/>
-           <img draggable="true" id="kalathur" src="f4.png"
-               alt="Prof. Kalathur"/>
-       </div>
-       <p></p>
-       <div id="target">
-
-       </div>
-        <p id="msg">Drop over the target</p>
-      -->

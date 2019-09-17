@@ -1,0 +1,56 @@
+/* html5 css file, Peter Lubbers, Kaazing */
+
+body {
+	border:solid;
+	font-size: 15pt
+}
+
+header {
+	display:block;
+	text-align:center;
+	width:100%;
+}
+
+h1 {
+	font-size: 32px;
+	margin: 0px;
+}
+
+h2 {
+	font-size: 24px;
+	margin: 0px;
+	text-align:center;
+}
+
+h3 {
+	font-size: 18px;
+	margin: 0px;
+	text-align:center;
+}
+
+h4 {
+	font-size: 12px;
+	margin: 0px;
+	text-align:center;
+}
+
+
+#democrats {
+	background-color: #add8e6;
+	height:10em;
+}
+
+#republicans {
+	background-color: #ff726f;
+	height:10em;
+}
+
+li{
+		font-size: 15px;
+		cursor: pointer;
+		color:black;
+}
+li:hover{
+		color: purple;
+		text-decoration: underline;
+}

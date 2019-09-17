@@ -1,115 +1,40 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Democrats/Republicans</title>
-        <meta charset="utf-8">
-        <script src="partyWise.js"></script>
-        <link rel="stylesheet" href="html5.css">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>PartyWise</title>
+       <link rel="stylesheet" href="style.css">
+      <script src="partyWise.js"></script>
+  </head>
 
-        <style type="text/css">
-            .dropList {
-                display: table-cell;
-                width: 400px;
-            }
-            ul {
-                padding-left: 30px;
-            }
-            #democrats, #republicans {
-                height: 150px;
-            }
-            #members li {
-                cursor: move;
-            }
-            .highlightedDemocrats {
-                background-color: blue;
-            }
-            .highlightedRepublicans {
-                background-color: red;
-            }
-            .dragged {opacity: 0.5;}
-        </style>
+  <body>
 
-    </head>
-    <body>
-      <header>
-      </header>
+      <div>
+          <div class="candidates">
+                  <h2 draggable="true">Time to Vote</h2>
+                  <p id="myText" draggable="true">Drag members to either Democrats or Republicans list.</p>
+                  <ul id="senators"></ul>
+              </div>
+              <div class="democrats">
+                  <div class="col-lg-6">
+                      <h2> Democrats: </h2>
+                      <div>
+                          <ul id="democrats" style="padding-top: 25px"></ul>
+                      </div>
+                  </div>
 
- <section>
-      <article>
-        <h2>Time to Vote</h2>
-
-         <p>Drag members to either the Democrats or Republicans list.</p>
-
-         <ul id="members">
-         </ul>
-
-         <div id="dropLists" style="display: table">
-         <div style="display: table-row">
-
-         <div class="dropList">
-            <fieldset>
-                <legend>Democrats:</legend>
-                <ul id="democrats">
-
-                </ul>
-            </fieldset>
-         </div>
-
-         <div class="dropList">
-            <fieldset>
-                <legend>Republicans:</legend>
-                <ul id="republicans">
-
-                </ul>
-            </fieldset>
-         </div>
-
-         </div>
-         </div>
-
- <p id="msg">Drop over the respective targets</p>
-      </article>
-    </section>
-
-
-<!--from here down is example drag and drop file-->
-<style>
-#target, #src > img {
-	border: thin solid black;
-	padding: 2px;
-	margin: 4px;
-}
-
-#target {
-	height: 75px;
-	width: 75px;
-	text-align: center;
-	display: table;
-}
-
-.dragged {opacity: 0.5;}
-
-</style>
-
-
-        <script src="dragAndDropSample.js"></script>
-
-         <div id="src">
-            <img draggable="true" id="ltc" src="f1.png"
-                alt="Prof. Chitkushev"/>
-            <img draggable="true" id="temkin" src="f2.png"
-                alt="Prof. Temkin"/>
-            <img draggable="true" id="kanabar" src="f3.png"
-                alt="Prof. Kanabar"/>
-            <img draggable="true" id="kalathur" src="f4.png"
-                alt="Prof. Kalathur"/>
-        </div>
-        <p></p>
-        <div id="target">
-
-        </div>
-
-         <p id="msg">Drop over the target</p>
-
-    </body>
-</html>
+                  <div class="republicans">
+                      <h2> Republicans: </h2>
+                      <div>
+                          <ul id="republicans" style="padding-top: 25px"></ul>
+                      </div>
+                  </div>
+                  <br />
+                  <div>
+                      <p id="alertMsg"></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </body>
+  </html>

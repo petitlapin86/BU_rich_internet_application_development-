@@ -1,72 +1,147 @@
-//drag and drop example js code
-
 window.onload = init;
+var senator_list = [];
+function init(){
+    All_senator= document.getElementById('senators');
+    democrats = document.getElementById('democrats');
+    republicans = document.getElementById('republicans');
+    alertMsg = document.getElementById("alertMsg");
 
-var src, target, msg;
-var sourceId;
-
-function init() {
-    src = document.getElementById("src");
-    target = document.getElementById("target");
-    msg = document.getElementById("msg");
-
-    // Add event handlers for the source
-    src.ondragstart = dragStartHandler;
-    src.ondragend = dragEndHandler;
-    src.ondrag = dragHandler;
-
-    // Add event handlers for the target
-    target.ondragenter = dragEnterHandler;
-    target.ondragover = dragOverHandler;
-    target.ondrop = dropHandler;
-}
-
-function dragStartHandler(e) {
-    e.dataTransfer.setData("Text", e.target.id);
-    sourceId = e.target.id;     // explicitly for some browsers
-    e.target.classList.add("dragged");
-}
-
-function dragEndHandler(e) {
-    msg.innerHTML = "Drag ended";
-    var elems = document.querySelectorAll(".dragged");
-    for(var i = 0; i < elems.length; i++) {
-        elems[i].classList.remove("dragged");
+    if (window.localStorage.getItem('mySenators') == null) {
+        alertMsg.innerHTML = "<b>From AJAX Loaded 10 senators</b>";
+        console.log("loaded for the first time");
+        var Connect = new XMLHttpRequest();
+        Connect.open("GET", "partyList.xml", false);
+        Connect.setRequestHeader("Content-Type", "text/xml");
+        Connect.send(null);
+        var theDocument = Connect.responseXML;
+        var Senators = theDocument.childNodes[0];
+        //console.log(theDocument.childNodes[0]);
+        //console.log(theDocument.childNodes[0].children);
+        for(i=0;i<Senators.children.length;i++){
+            var Senator = Senators.children[i];
+            //console.log(Senator.getElementsByTagName("name"));
+            //console.log(Senator.getElementsByTagName("name")[0].textContent);
+            All_senator.innerHTML += "<li draggable='true'>"+Senator.getElementsByTagName("name")[0].textContent+"</li>";
+            senator_list.push({
+                name:Senator.getElementsByTagName("name")[0].textContent,
+                party:null,
+                voted:false
+            });
+        }
+        senator_list = JSON.stringify(senator_list);
+        console.log("senator_list: "+senator_list);
+        window.localStorage.setItem("mySenators",senator_list);
+    }else{
+        alertMsg.innerHTML = "<b>From localStorage Loaded 10 senators</b>";
+        console.log("not the first time");
+        var mySenators = window.localStorage.getItem("mySenators");
+        mySenators = JSON.parse(mySenators);
+        console.log(mySenators[0]);
+        for(i=0;i<mySenators.length;i++){
+            All_senator.innerHTML+="<li draggable='true'>"+mySenators[i].name+"</li>";
+            if(mySenators[i].party=="democrats"){
+                democrats.innerHTML += "<li draggable='true'>"+ mySenators[i].name +"</li>";
+            }else if(mySenators[i].party=="republicans"){
+                republicans.innerHTML += "<li draggable='true'>" +mySenators[i].name + "</li>";
+            }
+        }
     }
-}
 
-function dragHandler(e) {
-    msg.innerHTML = "Dragging " + e.target.id;
-}
+    All_senator.ondragstart = dragStartHandler;
+    All_senator.ondragend = dragEndHandler;
+    All_senator.ondrag = dragHandler;
 
-function dragEnterHandler(e) {
-    console.log("Drag Entering " + e.target.id +
-            " source is " + e.dataTransfer.getData("Text") );
-
-    var id = e.dataTransfer.getData("text") || sourceId;
-    if (id == "kalathur") { //came from drag and drop example needs to be changed to work for only allowing democrats to be dragged to one side and only republicans to the other
-        e.preventDefault();
+    function dragStartHandler(e){
+        console.log("one is ondragstart");
+        console.log(e.target.textContent);
+        e.dataTransfer.setData("Text",e.target.textContent);
     }
-}
-
-function dragOverHandler(e) {
-    console.log("Drag Over " + e.target.id +
-             " source is " + e.dataTransfer.getData("Text")) ;
-
-    var id = e.dataTransfer.getData("text") || sourceId;
-    if (id == "kalathur") { //came from drag and drop example needs to be changed to work for only allowing democrats to be dragged to one side and only republicans to the other
-        e.preventDefault();
+    function dragEndHandler(e){
+        alertMsg.innerHTML = "<b>Drag ended</b>";
+        console.log("one is ondragend");
+        //console.log(e.target.id);
     }
+    function dragHandler(e){
+        console.log("one is ondraging");
+        //console.log(e.target.id);
+    }
+
+/*-------functions for republicans--------*/
+
+    republicans.addEventListener('dragenter', function(e){
+            console.log(e.target.voted);
+            console.log("dragenter!");
+            e.preventDefault();
+        },
+    false);
+    republicans.addEventListener("dragover",function(e){
+             e.preventDefault();
+             console.log("dragover!");
+        },
+    false);
+    republicans.addEventListener("drop",function(e){
+            var curr = e.dataTransfer.getData('Text');//curr is one's name
+            var mySenators = localStorage.getItem("mySenators");
+            mySenators = JSON.parse(mySenators);
+            var mySen = findElementByName(curr,mySenators);
+            if(mySen.voted==true){
+                if(mySen.party!="republicans"){
+                    alert("this man has been voted,and it is not republicans!");
+                }else{
+                    alert("this man has been voted,thanks!");
+                }
+            }else{
+                mySen.voted=true;
+                mySen.party="republicans";
+                republicans.innerHTML += "<li>"+mySen.name+"</li>";
+                mySenators = JSON.stringify(mySenators);
+                localStorage.setItem("mySenators",mySenators);
+                console.log("saved a new localStorage!");
+            }
+            e.preventDefault();
+    });
+
+/*-------functions for democrats--------*/
+
+    democrats.addEventListener('dragenter', function(e){
+            console.log(e.target.voted);
+            console.log("dragenter!");
+            e.preventDefault();
+        },
+    false);
+    democrats.addEventListener("dragover",function(e){
+             e.preventDefault();
+             console.log("dragover!");
+        },
+    false);
+    democrats.addEventListener("drop",function(e){
+            var curr = e.dataTransfer.getData("Text");
+            var mySenators = localStorage.getItem("mySenators");
+            mySenators = JSON.parse(mySenators);
+            var mySen = findElementByName(curr,mySenators);
+            if(mySen.voted==true){
+                if(mySen.party!="democrats"){
+                    alert("You have already voted for this candidate, and he/she is not republican!");
+                }else{
+                    alert("You have already voted for this candidate!");
+                }
+            }else{
+                mySen.voted = true;
+                mySen.party = "democrats";
+                democrats.innerHTML += "<li>"+curr+"</li>";
+                mySenators = JSON.stringify(mySenators);
+                localStorage.setItem("mySenators",mySenators);
+                console.log("saved a new localStorage!");
+            }
+            e.preventDefault();
+    });
 }
 
-function dropHandler(e) {
-    console.log("Drop on " + e.target.id +
-             " source is " + e.dataTransfer.getData("Text")) ;
-
-    var id = e.dataTransfer.getData("text") || sourceId;
-    var sourceElement = document.getElementById(id);
-    var newElement = sourceElement.cloneNode(false);
-    target.innerHTML = "";
-    target.appendChild(newElement);
-    e.preventDefault();
+function findElementByName(curr,mySenators){   //find the senator by name from localStorage
+    for( i=0;i<mySenators.length;i++){
+        if(mySenators[i].name==curr){
+            console.log("found the name"+ curr);
+            return mySenators[i];
+        }
+    }
 }

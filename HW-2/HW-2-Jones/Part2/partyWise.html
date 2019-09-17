@@ -1,0 +1,40 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>PartyWise</title>
+       <link rel="stylesheet" href="style.css">
+      <script src="partyWise.js"></script>
+  </head>
+
+  <body>
+
+      <div>
+          <div class="candidates">
+                  <h2 draggable="true">Time to Vote</h2>
+                  <p id="myText" draggable="true">Drag members to either Democrats or Republicans list.</p>
+                  <ul id="senators"></ul>
+              </div>
+              <div class="democrats">
+                  <div class="col-lg-6">
+                      <h2> Democrats: </h2>
+                      <div>
+                          <ul id="democrats" style="padding-top: 25px"></ul>
+                      </div>
+                  </div>
+
+                  <div class="republicans">
+                      <h2> Republicans: </h2>
+                      <div>
+                          <ul id="republicans" style="padding-top: 25px"></ul>
+                      </div>
+                  </div>
+                  <br />
+                  <div>
+                      <p id="alertMsg"></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </body>
+  </html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tokenizer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+  <script src="js/tokenizer.js"></script>
+</head>
+
+  <!--BIND TO CONTROLLER (in tokenizer.js)-->
+  <body ng-app="app" ng-controller="MainController as main">
+
+        <h2>Tokenizer</h2> <!--heading-->
+        <hr></hr> <!--heading line-->
+
+      <!--GET USER INPUT-->
+        <label>Input: <input type="text" ng-model="filterIt" /></label> <!--create names for ng-models in this case filterIt and delimiter-->
+        <br><br>
+        <label>Delimiter: <input type="text" ng-model="delimiter" /></label> <!--they now store whatever the user inputs-->
+
+        <!--DISPLAY RESULTS-->
+        <div>
+          <h4>The Classic Filter:</h4>
+          <p>{{filterIt | tokenizer}}</p> <!--print filterIt object but apply the tokenizer function to it-->
+          <h4>Your Custom Filter:</h4>
+          <p>{{filterIt | tokenizer:delimiter}}</p> <!--print filterIt object but apply tokenizer function with delimiter to it-->
+        </div>
+
+<!--CLOSING TAGS-->
+</body>
+</html>

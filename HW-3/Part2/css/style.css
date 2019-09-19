@@ -1,0 +1,17 @@
+body {background-color: #355C7D;
+margin-left: 40px;}
+
+h1{font-size: 40px; color: #F8B195;}
+
+h2,h3,h4,label {color: #F67280;
+font-size: 22px;
+font-weight: normal;
+}
+
+p, input{color: #F8B195;
+border-radius: 30px;
+border-width: 2;
+border-color: #F67280;
+height: 25px;
+font-size: 20px;
+}

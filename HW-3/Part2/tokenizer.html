@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Tokenizer</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
   <script src="js/tokenizer.js"></script>
 </head>
@@ -11,8 +11,9 @@
   <!--BIND TO CONTROLLER (in tokenizer.js)-->
   <body ng-app="app" ng-controller="MainController as main">
 
-        <h2>Tokenizer</h2> <!--heading-->
+        <h1>Tokenizer</h1> <!--heading-->
         <hr></hr> <!--heading line-->
+        <br>
 
       <!--GET USER INPUT-->
         <label>Input: <input type="text" ng-model="filterIt" /></label> <!--create names for ng-models in this case filterIt and delimiter-->
@@ -27,6 +28,9 @@
           <p>{{filterIt | tokenizer:delimiter}}</p> <!--print filterIt object but apply tokenizer function with delimiter to it-->
         </div>
 
+
+
 <!--CLOSING TAGS-->
 </body>
+
 </html>

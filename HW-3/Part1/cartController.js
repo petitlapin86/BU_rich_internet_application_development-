@@ -1,8 +1,8 @@
 var myModule = angular.module('shoppingCart', []); //define module
 
 myModule.controller('CartController', function CartController($scope) {
-    if (localStorage.He_cart) {
-        $scope.books = JSON.parse(localStorage.getItem("He_cart")); //grab from local storage
+    if (localStorage.books_cart) {
+        $scope.books = JSON.parse(localStorage.getItem("books_cart")); //grab from local storage, also naming my local storage books_cart
     } else{
         $scope.books = [ //otherwise grab these defined books
             {
@@ -48,14 +48,14 @@ myModule.controller('CartController', function CartController($scope) {
         $scope.getTotalPrice();  //update price total
     }
 
+    //SAVE A BOOK
+    $scope.saveBook = function() { //define function
+        localStorage.setItem("books_cart", JSON.stringify($scope.books)); //save item to local storage
+    }
+
     // REMOVE A BOOK
     $scope.removeBook = function(index) { //define function
         $scope.books.splice(index, 1); //cut index out of books array
         $scope.getTotalPrice(); //update price total
-    }
-
-    //SAVE A BOOK
-    $scope.saveBook = function() { //define function
-        localStorage.setItem("He_cart", JSON.stringify($scope.books)); //save item to local storage
     }
 });

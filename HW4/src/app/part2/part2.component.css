@@ -1,0 +1,38 @@
+
+/*Part 2 CSS Tokenizer */
+
+
+
+/*Headings*/
+h4,label {color: #F67280;
+font-size: 22px;
+font-weight: normal;
+}
+
+/*Output */
+h3 {
+color: #F8B195;
+font-size: 18px;
+font-weight: normal;
+}
+
+/*User Input Bar */
+p, input{
+color: #F8B195;
+border-radius: 30px;
+border-width: 2;
+border-color: #F67280;
+height: 25px;
+font-size: 20px;
+}
+
+input:hover { background: #def; } /*change label input color on hover*/
+
+/*Background*/
+.tokenizer { border-collapse: collapse;
+font-family: Futura, Arial, sans-serif;
+background: #355C7D;
+border: 2px solid #F8B195;
+padding: 20px;
+width: 560px;
+}

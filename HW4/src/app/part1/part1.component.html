@@ -1,0 +1,44 @@
+
+<h2>Part 1 - Cart</h2>
+
+
+<table>
+  <caption><b>My Books</b></caption>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Qty</th>
+      <th>UnitPrice</th>
+      <th>Line Total</th> <!--add in line total -->
+      <th><span>Total {{totalPrice | currency}}</span></th>
+    </tr>
+  </thead>
+
+ <!--TABLE BODY -->
+  <tbody *ngFor="let book of books;let i = index"> <!--in my angularjs version this was ng-repeat now ive changed it to for like a for each iterator, and the asterisk...i think means template -->
+    <tr>
+      <td><input class="rounded" [(ngModel)]="book.title"></td> <!--display title-->
+      <td>
+        <input class="rounded" [(ngModel)]="book.qty" size="2"> <!--display qty-->
+      </td>
+      <td><input class="rounded" [(ngModel)]="book.price"></td> <!--display price-->
+        <!--display line total-->
+      <td>{{book.price * book.qty | currency}}</td>
+      <td>
+        <!--Remove Button-->
+        <button class="round" (click)="removeBook(i)">
+          Remove
+        </button>
+      </td>
+    </tr>
+  </tbody>
+
+  <!--TABLE FOOTER-->
+  <tfoot>
+    <tr> <!--BUTTONS ADD or SAVE A BOOK-->
+      <th><button class="button" (click)="addBook($event)">New</button></th>
+      <th colspan="4"><button class="button" (click)="saveBook($event)">Save</button></th>
+    </tr>
+  </tfoot> <!--close table footer-->
+
+</table>  <!--close table-->

@@ -1,0 +1,11 @@
+
+<h2>Part 2 - Tokenizer</h2>
+<!--GET USER INPUT-->
+<div class="tokenizer">
+  <label>Input:<input type="text" [(ngModel)]="filterIt"></label> <!--create names for ng-models in this case filterIt and delimiter-->
+  <br> <!--create some space between inputs--->
+  <br> <!--create some space between inputs--->
+  <label>Delimiter:<input type="text" [(ngModel)]="delimiter"></label> <!--they now store whatever the user inputs-->
+  <h4> The Classic Filter: </h4><h3> {{filterIt | tokenizer:default}} </h3> <!--print filterIt object but apply the tokenizer function to it-->
+  <h4>Your Custom Filter: </h4><h3> {{filterIt | tokenizer:delimiter}} </h3> <!--print filterIt object but apply tokenizer function with delimiter to it-->
+</div>
